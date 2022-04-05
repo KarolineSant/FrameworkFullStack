@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='calculator.css') }}"/>
+</head>
+<body>
+    <h1>Calculadora</h1>
+    <form method="post" action="{{ url_for('operation_result') }}" id="calculator_form">
+        <label for="Input1">Numero 1:</label>
+        <input type="text" name="Input1" id="Input1">
+        <br/>
+        <label for="Input2">Numero 2:</label>
+        <input type="Input2" name="Input2" id="Input2">
+        <br/>
+        <label for="operation">Operação</label>
+        <select id="operation" name="operation">
+            <option value="+">Adição</option>
+            <option value="-">Subtração</option>
+            <option value="/">Divisão'</option>
+            <option value="*">Multiplicação</option>
+            <option value="%">Módulo</option>
+        </select>
+        <br/>
+        <input type="submit" value="Calcular"/>
+        <input type="reset"  value="Apagar" style="color: red;"/>
+    </form>
+    {% if calculation_success == True %}
+        <br/>
+        <p>O calculo de {{input1}} {{operation}} {{input2}} é: {{result}}</p>
+    {% endif %}
+    {% if calculation_success == False %}
+        <br/>
+        <p>{{error}}</p>
+        <p>{{input1}} {{operation}} {{input2}} = "{{result}}"</p>
+    {% endif %}
+</body>
+</html>
